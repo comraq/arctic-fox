@@ -7,11 +7,12 @@ module.exports = function(gulp, plugins, BIN_PATH, production) {
   
     plugins.util.log("Production", colour(production));
     gulp.watch([
-                 "./static/**/*.js"
+                 "./app/**/*.js"
                ],
                [ "minify-js" ]);
     gulp.watch([
-                 "./static/**/*.css"
+                 "./static/**/*.css",
+                 "./app/**/*.css",
                ],
                [ "minify-css" ]);
   };

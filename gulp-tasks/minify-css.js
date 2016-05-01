@@ -1,6 +1,9 @@
 module.exports = function(gulp, plugins, BIN_PATH, production) {
   return function() {
-    return gulp.src("./static/**/*.css")
+    return gulp.src([
+                      "./static/**/*.css",
+                      "./app/**/*.css"
+                    ])
       .pipe((!production)?
              plugins.sourcemaps.init() : plugins.util.noop())
         .pipe(plugins.cleanCSS())

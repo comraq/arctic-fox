@@ -45,7 +45,7 @@ module.exports = function(controller) {
 
   (function init() {
     viewGroup = document.getElementById(id);
-    controller.loadTemplate(viewGroup, "static/views/details/details.html")
+    controller.loadTemplate(viewGroup, "app/views/details/details.html")
       .then(onTemplateLoaded);
   })();
   return this;

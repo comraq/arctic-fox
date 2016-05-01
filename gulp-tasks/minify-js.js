@@ -4,7 +4,7 @@ var browserify = require("browserify"),
 
 module.exports = function(gulp, plugins, BIN_PATH, production) {
   return function() {
-    return browserify("./static/main.js")
+    return browserify("./app/app.js")
       .bundle()
       .on("error", function(err) {
         plugins.util.log(err);
