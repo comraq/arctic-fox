@@ -1,28 +1,46 @@
 module.exports = function(controller) {
   var id = "view-details";
-  var viewGroup, nameView, imgView;
+  var viewGroup, nameView, imgView, factsView, backButton, soundButton;
+  var currFox;
+  var sound;
   
-
   function onTemplateLoaded(root) {
-    for (var i = 0; i < root.children.length; ++i) {
-      child = root.children[i];
-      switch(child.id) {
-        case "name-view":
-          nameView = child;
-          break;
+    nameView = $("#" + id + "-name")[0];
+    imgView = $("#" + id + "-img-view")[0];
+    factsView = $("#" + id + "-facts-body")[0];
+    backButton = $("#" + id + "-back-button")[0];
+    soundButton = $("#" + id + "-sound-button")[0];
 
-        case "img-view":
-          imgView = child;
-          break;
-  
-        default:
-          // Default
-      }
-    }
-    controller.events.on("title-picture-clicked", function(imgUrl) {
-      nameView.innerHTML = imgUrl;
-      imgView.setAttribute("src", imgUrl);
+    controller.events.on("title-picture-clicked", function(fox) {
+      if (sound)
+        sound.pause();
+
+      currFox = fox;
+      $(viewGroup).addClass("view-details-show");
+
+      nameView.innerHTML = fox.name;
+      imgView.setAttribute("src", fox.imgUrl);
+      factsView.innerHTML = fox.facts;
+
     }); 
+
+    controller.events.on("details-closed", function() {
+      if (sound)
+        sound.pause();
+
+      $(viewGroup).removeClass("view-details-show");
+    });
+
+    soundButton.addEventListener("click", function() {
+      if (!sound || sound.paused) {
+        sound = new Audio(currFox.sound);
+        sound.play();
+      }
+    });
+
+    backButton.addEventListener("click", function() {
+      controller.events.emit("details-closed");
+    });
   }
 
   (function init() {

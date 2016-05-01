@@ -1,6 +1,41 @@
-#view-details img {
+#view-details {
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+  display: none;
+}
+
+#view-details.view-details-show {
+  display: block;
+
+  border: 1px solid #ccc;
+}
+
+#view-details #details-row .details-item {
+  display: inline-block;
+
   margin-left: 5%;
   margin-right: 5%;
 
-  width: 90%;
+  max-height: 50vh;
+  width: 39%;
+
+  text-align: center;
+  vertical-align: top;
+
+  border: 1px dashed red;
+}
+
+#view-details #details-row .details-item img {
+  max-height: 50vh;
+  max-width: 100%;
+}
+
+#view-details-name {
+  text-align: center;
+}
+
+#view-details #buttons-row {
+  margin-top: 1%;
+  text-align: center;
 }

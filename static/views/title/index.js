@@ -25,27 +25,30 @@ module.exports = function(controller) {
       var img = imgGroupView.children[i]; 
       (function(img) {
         initImg(img, function() {
-          return controller.getNextImage(img.getAttribute("src"));
+          return controller.getNextFox(img.getAttribute("fox-id"));
         });
       })(img);
     }
   }
 
-  function initImg(img, getPathFunc) {
-    img.setAttribute("src", getPathFunc());
+  function initImg(img, getFox) {
+    var fox = getFox();
+    img.setAttribute("src", fox.imgUrl);
+    img.setAttribute("fox-id", fox.id);
   
     var $img = $(img);
     $img.on("click", function() {
       var dfd = $.Deferred();
 
       $(this).fadeOut(500, function() {
-        controller.events.emit("title-picture-clicked",
-                               img.getAttribute("src"));
+        controller.events.emit("title-picture-clicked", fox);
         dfd.resolve();
       });
 
       dfd.then(function success() {
-        img.setAttribute("src", getPathFunc());
+        fox = getFox();
+        img.setAttribute("src", fox.imgUrl);
+        img.setAttribute("fox-id", fox.id);
         $img.fadeIn(500);            
       })
     })

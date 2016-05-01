@@ -14,23 +14,28 @@ module.exports = function(controllerInterface, model) {
   };
 
   var index = 0;
-  controller.getNextImage = function getNextImage(currImg) {
-    var fox;
+  controller.getNextFox = function getNextFox(i) {
+    var indexVal = parseInt(i);
+    if (!isNaN(indexVal)) {
+      foxes[indexVal].display = false;
+      index = (indexVal + 1) % foxes.length;
+    }
+
+    var fox, id;
     do {
       fox = foxes[index];
+      id = index;
       index = (index + 1) % foxes.length;
     } while (fox.display);
 
-    for (var i = 0; i < foxes.length; ++i) {
-      if (foxes[i].imgUrl == currImg) {
-        foxes[i].display = false;
-        break;
-      }
-    }
-
-    var img = fox.imgUrl;
     fox.display = true;
-    return img;
+    return {
+      name: fox.name,
+      imgUrl: fox.imgUrl,
+      facts: fox.facts,
+      sound: fox.sound,
+      id: id 
+    };
   };
 
   // Initialization of this instance
