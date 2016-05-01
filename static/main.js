@@ -6,63 +6,50 @@
 
   var controllerInterface = {
     events: events,
-    getFile: getFile
+    getFile: getFile,
+    loadTemplate: loadTemplate
   };
 
   (function init() {
     var model, controller, view;
-    for (var prop in models) {
-      model = models[prop]();
+    model = models.modelFactory();
+
+    for (var prop in controllers) {
       controller = controllers[prop](controllerInterface, model);
-      view = views[prop](controller).init();
+      view = views[prop](controller);
     }
   })();
 
-  function getFile(path) {
-    return new Promise(function(resolve, reject) {
-      var xmlhttp = new XMLHttpRequest();
-   
-      xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4) {
-          if (xmlhttp.status == 200)
-            resolve(xmlhttp.responseText);
-          else
-            reject(xmlhttp.status);
-        }
+})(window, document);
+
+function getFile(path) {
+  return new Promise(function(resolve, reject) {
+    var xmlhttp = new XMLHttpRequest();
+ 
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200)
+          resolve(xmlhttp.responseText);
+        else
+          reject(xmlhttp.status);
       }
-  
-      xmlhttp.open("GET", path);
-      xmlhttp.send();
-    });
-  }
-})(window, document)
+    }
 
-// Sample Code for testing promises and pubsub module
-function testCode() {
-  var test = document.getElementById("test");
-  test.innerHTML = "Ashley";
-
-  var myPromise = new Promise(function(resolve, reject) {
-    console.log("Setting timeout: 5s");
-    setTimeout(resolve, 5000);
-
-    events.on("testing", function(data) {
-      reject("reject reason with data: " + data);
-    });
-
+    xmlhttp.open("GET", path);
+    xmlhttp.send();
   });
+}
 
-  myPromise.then(function success(data) {
-    console.log("success! arguments:")
-    console.log(arguments);
+function loadTemplate(viewGroup, templatePath) {
+  var promise = getFile(templatePath);
 
-  }, function error(data) {
-    console.log("error! arguments:")
-    console.log(arguments);
+  return promise.then(function success(data) {
+    viewGroup.innerHTML = data;
+    return viewGroup;
 
-  });
-
-  test.addEventListener("click", function() {
-    events.emit("testing", "11111");
+  }, function error(err) {
+    var msg = "Failed to load template!";
+    viewGroup.innerHTML = msg;
+    alert("Status: " + err + "! " + msg);
   });
 }

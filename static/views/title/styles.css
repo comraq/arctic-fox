@@ -10,6 +10,10 @@
   width: 90vw;
 }
 
+.title-view#img-group img {
+  height: 100%;
+}
+
 .title-view#title {
   text-align: center;
 }

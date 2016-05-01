@@ -22,34 +22,40 @@ module.exports = function(controller) {
     }
     titleView.innerHTML = controller.getTitle();
     for (var i = 0; i < imgGroupView.children.length; ++i) {
-/*
-      var $img = $(imgGroupView.children[i]);
-      $img.on("click", function() {
-        $(this).fadeOut(500);
-      })
-*/
-      var img = imgGroupView.children[i];
-      img.setAttribute("src", controller.getNextImage());
+      var img = imgGroupView.children[i]; 
+      (function(img) {
+        initImg(img, function() {
+          return controller.getNextImage(img.getAttribute("src"));
+        });
+      })(img);
     }
   }
 
-  return {
-    init: function init() {
-      viewGroup = document.getElementById(id);
-      controller.getFile("static/views/title/title.html")
-        .then(function success(data) {
-        viewGroup.innerHTML = data;
-        return viewGroup;
+  function initImg(img, getPathFunc) {
+    img.setAttribute("src", getPathFunc());
+  
+    var $img = $(img);
+    $img.on("click", function() {
+      var dfd = $.Deferred();
 
-      }, function error(err) {
-        var msg = "Could not load title template!";
-        viewGroup.innerHTML = msg;
-        alert("Status: " + err + "! " + msg);
-    
-      }).then(onTemplateLoaded);
+      $(this).fadeOut(500, function() {
+        controller.events.emit("title-picture-clicked",
+                               img.getAttribute("src"));
+        dfd.resolve();
+      });
 
-      return this;
-    }
-  };
+      dfd.then(function success() {
+        img.setAttribute("src", getPathFunc());
+        $img.fadeIn(500);            
+      })
+    })
+  }
+
+  (function init() {
+    viewGroup = document.getElementById(id);
+    controller.loadTemplate(viewGroup, "static/views/title/title.html")
+      .then(onTemplateLoaded);
+  })();
+  
+  return this;
 };
-
