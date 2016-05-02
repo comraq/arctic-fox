@@ -6,7 +6,7 @@
 
   var controllerInterface = {
     events: events,
-    getFile: getFile,
+    ajax: ajax,
     loadTemplate: loadTemplate
   };
 
@@ -26,10 +26,9 @@
 
       });
   })();
-
 })(window, document);
 
-function getFile(path) {
+function ajax(path) {
   return new Promise(function(resolve, reject) {
     var xmlhttp = new XMLHttpRequest();
  
@@ -48,7 +47,7 @@ function getFile(path) {
 }
 
 function loadTemplate(viewGroup, templatePath) {
-  var promise = getFile(templatePath);
+  var promise = ajax(templatePath);
 
   return promise.then(function success(data) {
     viewGroup.innerHTML = data;

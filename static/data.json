@@ -40,5 +40,9 @@
       "facts": "An arctic fox can survive in extremely low temperatures as low as -58 degrees!",
       "sound": "fox-barks.mp3"
     }
-  ]
+  ],
+  "countServer": {
+    "host": "http://geocache-cpen391-team2.herokuapp.com/",
+    "url": "count/arctic-fox"
+  }
 }

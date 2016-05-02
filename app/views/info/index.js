@@ -11,12 +11,10 @@ module.exports = function(controller) {
     info.facts.forEach(function(fact, i) {
       var a = listView.children[0];
       var text = a.innerHTML;
-      console.log(a);
       if (i > 0) {
         a = a.cloneNode();
         a.innerHTML = text;
         listView.appendChild(a);
-        console.log(a);
       }
       a.setAttribute("data-content", fact); 
       $(a).popover();

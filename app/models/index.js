@@ -4,7 +4,7 @@ exports.modelFactory = function(controller) {
   var dataFile = "static/data.json";
   var data;
 
-  return controller.getFile(dataFile).then(function success(result) {
+  return controller.ajax(dataFile).then(function success(result) {
       data = JSON.parse(result);
       data.foxes.forEach(function(fox) {
         fox.imgUrl = imgPath + fox.imgUrl;
@@ -23,6 +23,9 @@ exports.modelFactory = function(controller) {
         },
         getInfo: function getInfo() {
           return data.info;
+        },
+        getCountServer: function getCountServer() {
+          return data.countServer.host + data.countServer.url;
         }
       };
 
