@@ -1,6 +1,6 @@
 #view-details {
   padding-top: 1%;
-  padding-bottom: 4%;
+  padding-bottom: 3%;
 
   display: none;
 
@@ -19,7 +19,7 @@
   margin-left: 5%;
   margin-right: 5%;
 
-  max-height: 50vh;
+  max-height: 40vh;
   width: 39%;
 
   text-align: center;
@@ -27,7 +27,7 @@
 }
 
 #view-details #details-row .details-item img {
-  max-height: 50vh;
+  max-height: 40vh;
   max-width: 100%;
 }
 
