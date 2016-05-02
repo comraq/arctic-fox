@@ -8,3 +8,21 @@
 #view-info.view-info-hide {
   display: none;
 }
+
+#view-info-list a {
+  margin-left: 5%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+
+  display: block;
+  width: 18%;
+}
+
+#view-info-img {
+  margin-top: 7%;
+
+  position: relative;
+  float: right;
+
+  max-width: 50%;
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Welcome To Ashley's Arctic Fox Website",
+  "info": {
+    "facts": [
+      "Arctic Fox live in burrows.",
+      "Eagles, wolves and polar bears are all predators to the Arctic Fox.",
+      "Their hearing is so good that they can locate the exact position of their prey under the snow."
+    ],
+    "imgUrl": "info.jpg",
+    "imgCaption": "The natural habitat of Arctic Foxes"
+  },
+  "foxes": [
+    {
+      "name": "Fox in the Forest",
+      "imgUrl": "fox1.jpg",
+      "facts": "Arctic foxes have an excllent sense of smell.",
+      "sound": "fox-howls.mp3"
+    },
+    {
+      "name": "Fox Cub",
+      "imgUrl": "fox2.jpg",
+      "facts": "Arctic fox babies are also called pups or kits.",
+      "sound": "fox-cubs.mp3"
+    },
+    {
+      "name": "Fox in the Snow",
+      "imgUrl": "fox3.jpg",
+      "facts": "Arctic foxes eat eggs. They even eat berries when they are available.",
+      "sound": "fox-warning-alarm.mp3"
+    },
+    {
+      "name": "Fox Cubs",
+      "imgUrl": "fox4.jpg",
+      "facts": "Their fur turns gray in the spring.",
+      "sound": "fox-playfighting.mp3"
+    },
+    {
+      "name": "Arctic Fox",
+      "imgUrl": "fox0.gif",
+      "facts": "An arctic fox can survive in extremely low temperatures as low as -58 degrees!",
+      "sound": "fox-barks.mp3"
+    }
+  ]
+}

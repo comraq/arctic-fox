@@ -10,7 +10,7 @@ module.exports = function(controllerInterface, model) {
   }
 
   controller.getTitle = function getTitle() {
-    return model.title;
+    return model.getTitle();
   };
 
   var index = 0;

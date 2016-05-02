@@ -1,10 +1,29 @@
 module.exports = function(controller) {
   var id = "view-info";
-  var viewGroup, contentView;
+  var viewGroup, listView, imgView;
 
+  var info;
   function onTemplateLoaded(root) {
-    contentView = $("#" + id + "-content")[0];
-    contentView.innerHTML = controller.getInfo();
+    listView = $("#" + id + "-list")[0];
+    imgView = $("#" + id + "-img")[0];
+    info = controller.getInfo();
+
+    info.facts.forEach(function(fact, i) {
+      var a = listView.children[0];
+      var text = a.innerHTML;
+      console.log(a);
+      if (i > 0) {
+        a = a.cloneNode();
+        a.innerHTML = text;
+        listView.appendChild(a);
+        console.log(a);
+      }
+      a.setAttribute("data-content", fact); 
+      $(a).popover();
+    });
+
+    imgView.setAttribute("src", info.imgUrl);
+    imgView.setAttribute("title", info.imgCaption);
 
     controller.events.on("title-picture-clicked", function(fox) {
       $(viewGroup).addClass("view-info-hide");

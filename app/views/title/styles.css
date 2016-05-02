@@ -19,4 +19,42 @@
 
 .title-view#title {
   text-align: center;
+
+  text-shadow: 1px 1px 1px #000;
+}
+
+.title-view#title:hover {
+  -webkit-animation-name: rainbow; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: infinite;
+  animation-name: rainbow;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.rainbow {
+  -webkit-animation-name: rainbow; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: infinite;
+  animation-name: rainbow;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow {
+    0%   { color: #ff3200; border-color: #ff3200; }
+    25%  { color: #ffcc00; border-color: #ffcc00; }
+    50%  { color: #4747d1; border-color: #4747d1; }
+    75%  { color: #ccff33; border-color: #ccff33; }
+    100% { color: #ff3200; border-color: #ff3200; }
+}
+
+/* Standard syntax */
+@keyframes rainbow {
+    0%   { color: #ff3200; border-color: #ff3200; }
+    25%  { color: #ffcc00; border-color: #ffcc00; }
+    50%  { color: #4747d1; border-color: #4747d1; }
+    75%  { color: #ccff33; border-color: #ccff33; }
+    100% { color: #ff3200; border-color: #ff3200; }
 }

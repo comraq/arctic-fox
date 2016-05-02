@@ -12,12 +12,19 @@
 
   (function init() {
     var model, controller, view;
-    model = models.modelFactory();
 
-    for (var prop in controllers) {
-      controller = controllers[prop](controllerInterface, model);
-      view = views[prop](controller);
-    }
+    models.modelFactory(controllerInterface)
+      .then(function success(data) {
+        model = data;
+
+        for (var prop in controllers) {
+          controller = controllers[prop](controllerInterface, model);
+          view = views[prop](controller);
+        }
+      }, function error(err) {
+        alert(err);
+
+      });
   })();
 
 })(window, document);

@@ -1,3 +1,16 @@
 body {
   background-color: #efe;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 1rem;
+
+  height: 5%;
+  width: 100%;
+  text-align: center;
+
+  background-color: #ffe;
+  border: 0.1vh solid #cec;
+}
