@@ -1,4 +1,6 @@
 (function(window, document) {
+  require("./vendors");
+
   var events = require("./pubsub")(),
       models = require("./models"),
       controllers = require("./controllers"),
